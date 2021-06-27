@@ -15,10 +15,10 @@
   </a>
 </p>
 
-  <h3 align="center">Project Title</h3>
+  <h3 align="center">Dungeon Escape Mobile 2D</h3>
 
   <p align="center">
-    Project Description
+    Mobile 2D Metroidvania
     <br />
     <br />
     <a href="https://github.com/JamesLaFritz/MyProjectTemplate/issues">Report Bug</a>
@@ -68,8 +68,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Game Elements Include Ledge Grab System, Moving Platforms, Switches, Elevators, Moveable Objects, Wall Jumping, Double
-Jumping, and Pressure Pads.
 ![Product Name Screen Shot](Images/ScreenShot.png)
 
 
