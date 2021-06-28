@@ -43,6 +43,13 @@
 	  <img src="https://img.shields.io/badge/Itch-fa5c5c.svg?style=for-the-badge&logo=Itch.io&logoColor=white""/>
 </p>
 
+<!-- PROJECT LOGO -->
+<p align="center">
+  <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile">
+    <img src="Images/Logo.png" alt="Logo" width="256"/>
+  </a>
+</p>
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
