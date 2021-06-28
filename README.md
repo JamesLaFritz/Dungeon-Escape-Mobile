@@ -10,7 +10,7 @@
 
 <!-- PROJECT LOGO -->
 <p align="center">
-  <a href="https://github.com/JamesLaFritz/MyProjectTemplate">
+  <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile">
     <img src="Images/Logo.png" alt="Logo" width="256" height="256">
   </a>
 </p>
@@ -21,9 +21,9 @@
     Mobile 2D Metroidvania
     <br />
     <br />
-    <a href="https://github.com/JamesLaFritz/MyProjectTemplate/issues">Report Bug</a>
+    <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile/issues">Report Bug</a>
     ·
-    <a href="https://github.com/JamesLaFritz/MyProjectTemplate/issues">Request Feature</a>
+    <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile/issues">Request Feature</a>
   </p>
 <br />
 
@@ -89,7 +89,7 @@
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/JamesLaFritz/MyProjectTemplate/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/JamesLaFritz/Dungeon-Escape-Mobile/issues) for a list of proposed features (and known issues).
 
 
 
@@ -111,13 +111,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/JamesLafritz/MyProjectTemplate.svg?style=for-the-badge
-[contributors-url]: https://github.com/JamesLafritz/MyProjectTemplate/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/JamesLafritz/MyProjectTemplate.svg?style=for-the-badge
-[forks-url]: https://github.com/JamesLafritz/MyProjectTemplate/network/members
-[stars-shield]: https://img.shields.io/github/stars/JamesLafritz/MyProjectTemplate.svg?style=for-the-badge
-[stars-url]: https://github.com/JamesLafritz/MyProjectTemplate/stargazers
-[issues-shield]: https://img.shields.io/github/issues/JamesLafritz/MyProjectTemplate.svg?style=for-the-badge
-[issues-url]: https://github.com/JamesLafritz/MyProjectTemplate/issues
-[license-shield]: https://img.shields.io/github/license/JamesLafritz/MyProjectTemplate.svg?style=for-the-badge
-[license-url]: https://github.com/JamesLafritz/MyProjectTemplate/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge
+[contributors-url]: https://github.com/JamesLafritz/Dungeon-Escape-Mobile/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge
+[forks-url]: https://github.com/JamesLafritz/Dungeon-Escape-Mobile/network/members
+[stars-shield]: https://img.shields.io/github/stars/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge
+[stars-url]: https://github.com/JamesLafritz/Dungeon-Escape-Mobile/stargazers
+[issues-shield]: https://img.shields.io/github/issues/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge
+[issues-url]: https://github.com/JamesLafritz/Dungeon-Escape-Mobile/issues
+[license-shield]: https://img.shields.io/github/license/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge
+[license-url]: https://github.com/JamesLafritz/Dungeon-Escape-Mobile/blob/main/LICENSE
