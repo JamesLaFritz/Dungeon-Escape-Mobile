@@ -80,7 +80,7 @@
 
 <!-- Articles -->
 ### Articles
-[]()
+[Project Set up](https://medium.com/p/f4fc36e7fbf0/edit)
 []()
 []()
 
