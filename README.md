@@ -73,7 +73,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Name Screen Shot](Images/ScreenShot.png)
+![Project Screen Shot](Images/2021-06-27-2318.56.631.gif)
 
 
 
