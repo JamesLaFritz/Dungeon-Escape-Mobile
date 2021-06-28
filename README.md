@@ -73,7 +73,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Project Screen Shot](Images/2021-06-27-2318.56.631.gif)
+![Project Screen Shot](Images/2021-06-28-1450.46.082.gif)
 
 
 
@@ -85,10 +85,12 @@
 
 <!-- Articles -->
 ### Articles
-[Project Set up](https://medium.com/p/f4fc36e7fbf0/edit)
-[]()
-[]()
-
+- [Project Set up](https://medium.com/p/f4fc36e7fbf0/edit)
+- [Introduction To Tile Map: Creating Tilemaps, Tile Palettes, and Tiles](https://medium.com/p/beb7b5435c2/edit)
+- []()
+- []()
+- []()
+- []()
 
 
 <!-- ROADMAP -->
