@@ -1,18 +1,3 @@
-
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-<!-- PROJECT LOGO -->
-<p align="center">
-  <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile">
-    <img src="Images/Logo.png" alt="Logo" width="256"/>
-  </a>
-</p>
-
 <!-- Header -->
 <!--<h3 align="center">Dungeon Escape Mobile 2D</h3>-->
 <!--<h2 align="center">Mobile 2D Metroidvania</h2>-->
@@ -22,6 +7,40 @@
 	<a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile/issues">Report Bug</a>
         ·
         <a href="https://github.com/JamesLaFritz/Dungeon-Escape-Mobile/issues">Request Feature</a>
+</p>
+
+<!-- PROJECT SHIELDS -->
+<p align="center">
+  <a href="https://github.com/JamesLafritz/Dungeon-Escape-Mobile/graphs/contributors">
+	  <img src="https://img.shields.io/github/contributors/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge"/>
+  </a>
+  <a href="https://img.shields.io/github/forks/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge">
+	  <img src="https://img.shields.io/github/forks/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge"/>
+  </a>
+  <a href="https://github.com/JamesLafritz/Dungeon-Escape-Mobile/stargazers">
+	  <img src="https://img.shields.io/github/stars/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge"/>
+  </a>
+  <a href="https://github.com/JamesLafritz/Dungeon-Escape-Mobile/issues">
+	  <img src="https://img.shields.io/github/issues/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge"/>
+  </a>
+  <a href="https://img.shields.io/github/license/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge">
+	  <img src="https://img.shields.io/github/license/JamesLafritz/Dungeon-Escape-Mobile.svg?style=for-the-badge"/>
+  </a>
+</p>
+
+<!-- Links -->
+<p align="center">
+  <a href="https://jameslafritz.intensive.gamedevhq.com/">
+	  <img src="https://img.shields.io/badge/Portfolio-21759B?style=for-the-badge&logo=wordpress&logoColor=white"/>
+  </a>
+  <a href="https://ktmarine1999.medium.com/">
+	  <img src="https://img.shields.io/badge/Articles-000000?style=for-the-badge&logo=medium&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/in/james-lafritz/">
+	  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a> 
+  <a href="https://ktmarine1999.itch.io/">
+	  <img src="https://img.shields.io/badge/Itch-fa5c5c.svg?style=for-the-badge&logo=Itch.io&logoColor=white""/>
 </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -86,21 +105,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [Scribtable Object Game Events](https://blog.devgenius.io/scriptableobject-game-events-1f3401bbde72)
 * [Making The Inspector Look Better](https://blog.devgenius.io/making-the-inspector-look-better-175baf39ada0)
 * [Creating Custom Packages](https://blog.devgenius.io/creating-custom-packages-for-use-in-unity-7dfbaa49e4b4)
-
-<!-- Links -->
-<p align="center">
-  <a href="https://jameslafritz.intensive.gamedevhq.com/">
-	  <img src="https://img.shields.io/badge/Portfolio-21759B?style=for-the-badge&logo=wordpress&logoColor=white"/>
-  </a>
-  <a href="https://www.linkedin.com/in/james-lafritz/">
-	  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a> 
-  <a href="https://ktmarine1999.medium.com/">
-	  <img src="https://img.shields.io/badge/Articles-12100E?style=for-the-badge&logo=medium&logoColor=white"/>
-  </a>
-  <a href="https://ktmarine1999.itch.io/">
-	  <img src="https://img.shields.io/badge/itch.io-FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white"/>
-</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
