@@ -73,7 +73,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Project Screen Shot](Images/2021-06-28-1450.46.082.gif)
+![Project Screen Shot](Images/2021-06-28-2117.32.293.gif)
 
 
 
@@ -86,8 +86,8 @@
 <!-- Articles -->
 ### Articles
 - [Project Set up](https://medium.com/p/f4fc36e7fbf0/edit)
-- [Introduction To Tile Map: Creating Tilemaps, Tile Palettes, and Tiles](https://medium.com/p/beb7b5435c2/edit)
-- []()
+- [Introduction To Tilemap in Unity: Creating Tilemaps, Tile Palettes, and Tiles](https://medium.com/p/beb7b5435c2/edit)
+- [Introduction to Tilemap in Unity: Scriptable Tiles, Scriptable Brushes, Using 2D Tilemap Extras](https://medium.com/p/ffdf6b3b6e23/edit)
 - []()
 - []()
 - []()
