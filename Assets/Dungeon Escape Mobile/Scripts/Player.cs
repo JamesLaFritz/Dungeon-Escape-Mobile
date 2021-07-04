@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool m_playerInputHasBeenInit;
 
     private InputAction m_moveAction;
+    private InputAction m_jumpAction;
 
     // 'Fire' input action has been triggered.
     private void OnFire(InputAction.CallbackContext context)
