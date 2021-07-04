@@ -85,9 +85,18 @@
 
 <!-- Articles -->
 ### Articles
-- [Project Set up](https://medium.com/p/f4fc36e7fbf0/edit)
-- [Introduction To Tilemap in Unity: Creating Tilemaps, Tile Palettes, and Tiles](https://medium.com/p/beb7b5435c2/edit)
-- [Introduction to Tilemap in Unity: Scriptable Tiles, Scriptable Brushes, Using 2D Tilemap Extras](https://medium.com/p/ffdf6b3b6e23/edit)
+- [Project Set up](https://ktmarine1999.medium.com/dungeon-escape-mobile-2d-f4fc36e7fbf0)
+- [Introduction To Tilemap in Unity: Creating Tilemaps, Tile Palettes, and Tiles](https://ktmarine1999.medium.com/introduction-to-tilemap-in-unity-part-1-beb7b5435c2)
+- [Introduction to Tilemap in Unity: Scriptable Tiles, Scriptable Brushes, And Using 2D Tilemap Extras](https://ktmarine1999.medium.com/introduction-to-tilemap-in-unity-part-2-ffdf6b3b6e23)
+- [Perspective Parallax Effect](https://ktmarine1999.medium.com/perspective-parallax-effect-871baef0fa14)
+- [Sprite Animations: Using Blend Trees and Layers](https://ktmarine1999.medium.com/sprite-animations-fb8fe6ffffb5)
+- [Unity New Input System Part 1: Using the New Input System, Player Input, and Unity Events]()
+- [Unity New Input System Part 2]()
+- []()
+- []()
+- []()
+- []()
+- []()
 - []()
 - []()
 - []()
