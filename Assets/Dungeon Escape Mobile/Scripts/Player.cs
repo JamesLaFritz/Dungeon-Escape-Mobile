@@ -1,16 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
-    private Vector2 m_look;
     private Vector2 m_move;
 
     private bool m_FireButtonIsBeingPressed;
     private bool m_FireActionPerformed;
 
+    private PlayerInput m_playerInput;
+    private bool m_playerInputHasBeenInit;
+
+    private InputAction m_moveAction;
+
     // 'Fire' input action has been triggered.
-    public void OnFire(InputAction.CallbackContext context)
+    private void OnFire(InputAction.CallbackContext context)
     {
+        Debug.Log($"Fire Event {context.phase}");
         switch (context.phase)
         {
             // The Button was pressed
@@ -24,34 +31,49 @@ public class Player : MonoBehaviour
             // The Button was released
             case InputActionPhase.Canceled:
                 m_FireButtonIsBeingPressed = false;
+                m_FireActionPerformed = false;
                 break;
+            case InputActionPhase.Disabled:
+            case InputActionPhase.Waiting:
+                break;
+            default:
+                throw new System.ArgumentOutOfRangeException();
         }
     }
 
-    // 'Move' input action has been performed.
-    public void OnMove(InputAction.CallbackContext context)
+    private void Start()
     {
-        m_move = context.ReadValue<Vector2>();
+        m_playerInput = GetComponent<PlayerInput>();
+        m_moveAction = m_playerInput.actions["Move"];
     }
 
-    // 'Look' input action has been performed.
-    public void OnLook(InputAction.CallbackContext context)
+    private void OnDisable()
     {
-        m_look = context.ReadValue<Vector2>();
+        m_playerInput.actions["Fire"].performed -= OnFire;
+        m_playerInput.actions["Fire"].started -= OnFire;
+        m_playerInput.actions["Fire"].canceled -= OnFire;
+
+        m_playerInputHasBeenInit = false;
+    }
+
+    private void InitPlayerInput()
+    {
+        if (!m_playerInput.isActiveAndEnabled) return;
+
+        m_playerInputHasBeenInit = true;
+
+        m_playerInput.actions["Fire"].performed += OnFire;
+        m_playerInput.actions["Fire"].started += OnFire;
+        m_playerInput.actions["Fire"].canceled += OnFire;
     }
 
     public void Update()
     {
-        // Update transform from m_Move and m_Look
-        Fire();
-    }
+        if (!m_playerInputHasBeenInit)
+            InitPlayerInput();
 
-    private void Fire()
-    {
-        if (m_FireActionPerformed)
-        {
-            // special fire action performed code
-            m_FireActionPerformed = false;
-        }
+        m_move = m_moveAction.ReadValue<Vector2>();
+
+        // Update transform from m_Move and m_Look
     }
 }
