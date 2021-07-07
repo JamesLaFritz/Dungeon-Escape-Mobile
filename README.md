@@ -73,7 +73,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Project Screen Shot](Images/2021-06-28-2334.43.012.gif)
+![Project Screen Shot](Images/2021-07-07-1200.57.532.gif)
 
 
 
@@ -91,7 +91,7 @@
 - [Perspective Parallax Effect](https://ktmarine1999.medium.com/perspective-parallax-effect-871baef0fa14)
 - [Sprite Animations: Using Blend Trees and Layers](https://ktmarine1999.medium.com/sprite-animations-fb8fe6ffffb5)
 - [Unity New Input System Part 1: Using the New Input System, Player Input, and Unity Events]()
-- [Unity New Input System Part 2]()
+- [Unity New Input System Part 2: C# Events, Responding To Unity Actions, Changing Actions on Action Maps](https://ktmarine1999.medium.com/unity-new-input-system-part-2-7cd53e04951d)
 - []()
 - []()
 - []()
