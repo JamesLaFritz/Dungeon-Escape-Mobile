@@ -1,80 +1,103 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput), typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    private Vector2 m_move;
+    [Header("Movement")]
+    [SerializeField]
+    private float m_walkSpeed = 1f;
 
-    private bool m_FireButtonIsBeingPressed;
-    private bool m_FireActionPerformed;
+    [SerializeField] private float m_jumpVelocity = 5f;
+    private bool m_isJumping;
+
+    private float m_moveSpeed;
+    private Vector2 m_move;
+    private Vector2 m_velocity = Vector2.zero;
+
+    [Header("Ground Check")]
+    [SerializeField]
+    private LayerMask m_groundLayer;
+
+    [SerializeField] private float m_groundCheckDistance = 0.6f;
+
+    private Rigidbody2D m_rigidbody2D;
 
     private PlayerInput m_playerInput;
-    private bool m_playerInputHasBeenInit;
 
     private InputAction m_moveAction;
+    private InputAction m_fireAction;
     private InputAction m_jumpAction;
 
-    // 'Fire' input action has been triggered.
-    private void OnFire(InputAction.CallbackContext context)
-    {
-        Debug.Log($"Fire Event {context.phase}");
-        switch (context.phase)
-        {
-            // The Button was pressed
-            case InputActionPhase.Started:
-                m_FireButtonIsBeingPressed = true;
-                break;
-            // The Action has meet all preformed Conditions
-            case InputActionPhase.Performed:
-                m_FireActionPerformed = true;
-                break;
-            // The Button was released
-            case InputActionPhase.Canceled:
-                m_FireButtonIsBeingPressed = false;
-                m_FireActionPerformed = false;
-                break;
-            case InputActionPhase.Disabled:
-            case InputActionPhase.Waiting:
-                break;
-            default:
-                throw new System.ArgumentOutOfRangeException();
-        }
-    }
+    private PlayerAnimationController m_playerAnimationController;
+    private bool m_hasPlayerAnimationController;
 
     private void Start()
     {
         m_playerInput = GetComponent<PlayerInput>();
         m_moveAction = m_playerInput.actions["Move"];
-    }
+        m_fireAction = m_playerInput.actions["Fire"];
+        m_jumpAction = m_playerInput.actions["Jump"];
 
-    private void OnDisable()
-    {
-        m_playerInput.actions["Fire"].performed -= OnFire;
-        m_playerInput.actions["Fire"].started -= OnFire;
-        m_playerInput.actions["Fire"].canceled -= OnFire;
-
-        m_playerInputHasBeenInit = false;
-    }
-
-    private void InitPlayerInput()
-    {
-        if (!m_playerInput.isActiveAndEnabled) return;
-
-        m_playerInputHasBeenInit = true;
-
-        m_playerInput.actions["Fire"].performed += OnFire;
-        m_playerInput.actions["Fire"].started += OnFire;
-        m_playerInput.actions["Fire"].canceled += OnFire;
+        m_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        m_playerAnimationController = GetComponent<PlayerAnimationController>();
+        m_hasPlayerAnimationController = m_playerAnimationController != null;
     }
 
     public void Update()
     {
-        if (!m_playerInputHasBeenInit)
-            InitPlayerInput();
+        m_velocity = m_rigidbody2D.velocity;
 
-        m_move = m_moveAction.ReadValue<Vector2>();
+        Move();
+        Jump();
 
-        // Update transform from m_Move and m_Look
+        m_rigidbody2D.velocity = m_velocity;
+    }
+
+    private void Move()
+    {
+        m_move.x = m_moveAction.ReadValue<Vector2>().x;
+        if (m_move.x > 0.1f || m_move.x < -0.1f)
+        {
+            m_moveSpeed = m_walkSpeed;
+            transform.right = m_move;
+        }
+        else
+        {
+            m_moveSpeed = 0;
+        }
+
+        m_velocity.x = m_move.x * m_moveSpeed;
+
+        if (m_hasPlayerAnimationController)
+            m_playerAnimationController.SetAnimatorMoveSpeedParameter(m_moveSpeed);
+    }
+
+    private bool IsGrounded()
+    {
+        // Cast a ray straight down.
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, m_groundCheckDistance, m_groundLayer.value);
+
+        // If it hits something...
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Jump()
+    {
+        if (!m_jumpAction.triggered) return;
+
+        if (IsGrounded())
+        {
+            m_velocity.y = m_jumpVelocity;
+            Debug.Log("Jump");
+
+            if (m_hasPlayerAnimationController)
+                m_playerAnimationController.TriggerJump();
+        }
     }
 }

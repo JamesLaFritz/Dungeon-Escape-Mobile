@@ -16,11 +16,20 @@ public class PlayerAnimationController : MonoBehaviour
         m_animator.SetFloat(m_speedParameter, value);
     }
 
-    public void PlayIdleAnimation() => SetAnimatorMoveSpeedParameter(0);
+    #endregion
+    
+    #region Jump
 
-    public void PlayWalkAnimation() => SetAnimatorMoveSpeedParameter(1);
+    private int m_jumpParameter;
+    private bool m_hasJumpParameter;
 
-    public void PlayRunAnimation() => SetAnimatorMoveSpeedParameter(2);
+    public void TriggerJump()
+    {
+        if (!m_hasJumpParameter) return;
+
+        Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
+        m_animator.SetTrigger(m_jumpParameter);
+    }
 
     #endregion
 
@@ -41,6 +50,12 @@ public class PlayerAnimationController : MonoBehaviour
         {
             m_hasSpeedParameter = true;
             m_speedParameter = Animator.StringToHash("Speed");
+        }
+
+        if (m_animator.GetParameter(GetAnimatorParameterIndex("Jump")) != null)
+        {
+            m_hasJumpParameter = true;
+            m_jumpParameter = Animator.StringToHash("Jump");
         }
     }
 
