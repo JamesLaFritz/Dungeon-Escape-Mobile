@@ -17,7 +17,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Jump
 
     private int m_jumpParameter;
@@ -29,6 +29,21 @@ public class PlayerAnimationController : MonoBehaviour
 
         Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
         m_animator.SetTrigger(m_jumpParameter);
+    }
+
+    #endregion
+
+    #region Attack
+
+    private int m_attackParameter;
+    private bool m_hasAttackParameter;
+
+    public void TriggerAttack()
+    {
+        if (!m_hasAttackParameter) return;
+
+        Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
+        m_animator.SetTrigger(m_attackParameter);
     }
 
     #endregion
@@ -56,6 +71,12 @@ public class PlayerAnimationController : MonoBehaviour
         {
             m_hasJumpParameter = true;
             m_jumpParameter = Animator.StringToHash("Jump");
+        }
+
+        if (m_animator.GetParameter(GetAnimatorParameterIndex("Attack")) != null)
+        {
+            m_hasAttackParameter = true;
+            m_attackParameter = Animator.StringToHash("Attack");
         }
     }
 

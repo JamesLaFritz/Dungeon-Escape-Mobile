@@ -50,11 +50,12 @@ public class Player : MonoBehaviour
 
         Move();
         Jump();
+        Attack();
 
         m_rigidbody2D.velocity = m_velocity;
 
-        Debug.DrawRay(transform.position, Vector3.down * m_groundCheckDistance, Color.green);
-        Debug.DrawRay(transform.position, Vector3.right * m_groundCheckDistance, Color.yellow);
+        //Debug.DrawRay(transform.position, Vector3.down * m_groundCheckDistance, Color.green);
+        //Debug.DrawRay(transform.position, Vector3.right * m_groundCheckDistance, Color.yellow);
     }
 
     private void Move()
@@ -92,14 +93,21 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!m_jumpAction.triggered) return;
+        if (!m_jumpAction.triggered || !IsGrounded()) return;
 
-        if (IsGrounded())
-        {
-            m_velocity.y = m_jumpVelocity;
+        m_velocity.y = m_jumpVelocity;
 
-            if (m_hasPlayerAnimationController)
-                m_playerAnimationController.TriggerJump();
-        }
+        if (m_hasPlayerAnimationController)
+            m_playerAnimationController.TriggerJump();
+    }
+
+    private void Attack()
+    {
+        if (!m_fireAction.triggered) return;
+
+        if (!IsGrounded()) return;
+
+        if (m_hasPlayerAnimationController)
+            m_playerAnimationController.TriggerAttack();
     }
 }
