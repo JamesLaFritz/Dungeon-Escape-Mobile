@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
         Jump();
 
         m_rigidbody2D.velocity = m_velocity;
+
+        Debug.DrawRay(transform.position, Vector3.down * m_groundCheckDistance, Color.green);
+        Debug.DrawRay(transform.position, Vector3.right * m_groundCheckDistance, Color.yellow);
     }
 
     private void Move()
@@ -94,7 +97,6 @@ public class Player : MonoBehaviour
         if (IsGrounded())
         {
             m_velocity.y = m_jumpVelocity;
-            Debug.Log("Jump");
 
             if (m_hasPlayerAnimationController)
                 m_playerAnimationController.TriggerJump();
