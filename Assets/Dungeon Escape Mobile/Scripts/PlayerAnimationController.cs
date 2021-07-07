@@ -38,12 +38,19 @@ public class PlayerAnimationController : MonoBehaviour
     private int m_attackParameter;
     private bool m_hasAttackParameter;
 
+    [SerializeField] private Animator m_swordAnim;
+
     public void TriggerAttack()
     {
         if (!m_hasAttackParameter) return;
 
         Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
         m_animator.SetTrigger(m_attackParameter);
+
+        if (m_swordAnim != null)
+        {
+            m_swordAnim.SetTrigger("Attack");
+        }
     }
 
     #endregion
