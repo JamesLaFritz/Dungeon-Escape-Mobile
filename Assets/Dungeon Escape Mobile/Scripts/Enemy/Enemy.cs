@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected int health;
-    [SerializeField] protected int speed;
+    [SerializeField] protected float speed;
     [SerializeField] protected int gems;
 
     [SerializeField] protected float idleWaitTime;
@@ -91,15 +91,5 @@ public abstract class Enemy : MonoBehaviour
 
         // Get the Next Position
         NextPosition();
-    }
-
-    protected virtual IEnumerator Attack()
-    {
-        yield return null;
-    }
-
-    protected virtual IEnumerator Dead()
-    {
-        yield return null;
     }
 }
