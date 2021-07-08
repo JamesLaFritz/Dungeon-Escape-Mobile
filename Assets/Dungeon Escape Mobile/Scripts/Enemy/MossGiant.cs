@@ -1,5 +1,1 @@
-using UnityEngine;
-
-public class MossGiant : Enemy
-{
-}
+public class MossGiant : Enemy { }

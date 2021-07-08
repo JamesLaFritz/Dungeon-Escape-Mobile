@@ -1,5 +1,1 @@
-using UnityEngine;
-
-public class Spider : Enemy
-{
-}
+public class Spider : Enemy { }
