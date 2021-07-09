@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4e94610a0d8c249baeebdc0d41271b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  m_health: 3
   speed: 0.5
   gems: 5
   waypoints: {fileID: 4366639111857651232}
