@@ -3,7 +3,14 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int health;
+    [SerializeField] private int m_health;
+
+    public int Health
+    {
+        get => m_health;
+        set => m_health = value;
+    }
+
     [SerializeField] protected float speed;
     [SerializeField] protected int gems;
 
