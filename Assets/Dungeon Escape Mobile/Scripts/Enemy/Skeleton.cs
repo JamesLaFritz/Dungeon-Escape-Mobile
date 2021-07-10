@@ -9,6 +9,8 @@ public class Skeleton : Enemy, IDamageable
     {
         Debug.Log($"{name} has been damaged by {amount}");
 
+        TriggerGotHit();
+
         // Subtract amount from health
         Health -= amount;
 
