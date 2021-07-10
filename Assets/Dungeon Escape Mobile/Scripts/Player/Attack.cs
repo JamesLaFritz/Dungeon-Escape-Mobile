@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// sure the Attack Animation enables & disables this Behavior when Attacking.
+/// </summary>
 public class Attack : MonoBehaviour
 {
     [SerializeField] private float damageableResetTime = 0.2f;
-    private List<IDamageable> hits = new List<IDamageable>();
+    private List<IDamageable> hits;
+
+    private void OnEnable()
+    {
+        hits = new List<IDamageable>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,13 +30,5 @@ public class Attack : MonoBehaviour
 
         hits.Add(damageable);
         damageable.Damage(1);
-        StartCoroutine(RemoveDamageable(damageable));
-    }
-
-    private IEnumerator RemoveDamageable(IDamageable damageable)
-    {
-        yield return new WaitForSeconds(damageableResetTime);
-
-        hits.Remove(damageable);
     }
 }
