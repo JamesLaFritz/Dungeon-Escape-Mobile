@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private float damageableResetTime = 0.2f;
     private List<IDamageable> hits;
 
     private void OnEnable()
