@@ -1,7 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    [SerializeField] private float damageableResetTime = 0.2f;
+    private List<IDamageable> hits = new List<IDamageable>();
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if collided with a damageable object do damage.
@@ -13,6 +18,17 @@ public class Attack : MonoBehaviour
             return;
         }
 
+        if (hits.Contains(damageable)) return;
+
+        hits.Add(damageable);
         damageable.Damage(1);
+        StartCoroutine(RemoveDamageable(damageable));
+    }
+
+    private IEnumerator RemoveDamageable(IDamageable damageable)
+    {
+        yield return new WaitForSeconds(damageableResetTime);
+
+        hits.Remove(damageable);
     }
 }
