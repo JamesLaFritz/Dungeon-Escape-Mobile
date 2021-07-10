@@ -28,8 +28,10 @@ public abstract class Enemy : MonoBehaviour
     private Animator m_animator;
     private bool m_hasAnimator;
     private static int _idleParameterName;
+    private static int _hitParameterName;
 
-    protected bool IsIdling => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
+    protected bool CanMove => !(m_hasAnimator && (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") ||
+                                                  m_animator.GetCurrentAnimatorStateInfo(0).IsName("Got Hit")));
 
     /// <summary>
     /// Get the first animator component found in children.
@@ -41,6 +43,7 @@ public abstract class Enemy : MonoBehaviour
         {
             m_hasAnimator = true;
             _idleParameterName = Animator.StringToHash("Idle");
+            _hitParameterName = Animator.StringToHash("Hit");
         }
 
         hasWayPoints = waypoints != null;
@@ -57,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
-        if (IsIdling)
+        if (!CanMove)
             return;
 
         ChangeFaceDirection();
@@ -102,6 +105,11 @@ public abstract class Enemy : MonoBehaviour
         if (!m_hasAnimator || currentPosition != nextPosition) return;
 
         m_animator.SetTrigger(_idleParameterName);
+    }
+
+    protected void TriggerGotHit()
+    {
+        m_animator.SetTrigger(_hitParameterName);
     }
 
     /// <summary>
