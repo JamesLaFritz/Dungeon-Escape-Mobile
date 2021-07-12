@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
+    [SerializeField] private int m_health = 3;
+
     [Header("Movement")]
     [SerializeField]
     private float m_walkSpeed = 1f;
@@ -110,4 +112,35 @@ public class Player : MonoBehaviour
         if (m_hasPlayerAnimationController)
             m_playerAnimationController.TriggerAttack();
     }
+
+    private void TriggerGotHit()
+    {
+        if (m_hasPlayerAnimationController)
+            m_playerAnimationController.TriggerGotHit();
+    }
+
+    #region Implementation of IDamageable
+
+    /// <inheritdoc />
+    public int Health
+    {
+        get => m_health;
+        set => m_health = value;
+    }
+
+    /// <inheritdoc />
+    public void Damage(int amount)
+    {
+        TriggerGotHit();
+
+        // Subtract amount from health
+        Health -= amount;
+
+        if (Health < 1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
 }

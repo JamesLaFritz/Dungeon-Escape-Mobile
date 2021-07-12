@@ -55,6 +55,21 @@ public class PlayerAnimationController : MonoBehaviour
 
     #endregion
 
+    #region Got Hit
+
+    private int m_hitParameter;
+    private bool m_hasHitParameter;
+
+    public void TriggerGotHit()
+    {
+        if (!m_hasHitParameter) return;
+
+        Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
+        m_animator.SetTrigger(m_hitParameter);
+    }
+
+    #endregion
+
     private void Awake()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -84,6 +99,12 @@ public class PlayerAnimationController : MonoBehaviour
         {
             m_hasAttackParameter = true;
             m_attackParameter = Animator.StringToHash("Attack");
+        }
+
+        if (m_animator.GetParameter(GetAnimatorParameterIndex("GotHit")) != null)
+        {
+            m_hasHitParameter = true;
+            m_hitParameter = Animator.StringToHash("GotHit");
         }
     }
 
