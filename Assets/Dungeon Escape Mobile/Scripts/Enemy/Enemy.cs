@@ -25,13 +25,25 @@ public abstract class Enemy : MonoBehaviour
 
     private bool m_directionChanged;
 
+    [SerializeField] private LayerMask m_combatLayerMask = 1 << 10;
+    [SerializeField] private float m_combatDistance = 2f;
+    private bool m_inCombat;
+    private Vector3 m_combatRayStart;
+    private Vector3 m_combatRayDirection;
+    private float m_combatRayDistance;
+    private Vector3 m_combatDirection;
+
     private Animator m_animator;
     private bool m_hasAnimator;
     private static int _idleParameterName;
     private static int _hitParameterName;
+    private static int _inCombatParameterName;
 
-    protected bool CanMove => !(m_hasAnimator && (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") ||
-                                                  m_animator.GetCurrentAnimatorStateInfo(0).IsName("Got Hit")));
+    protected bool IsIdling => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
+    protected bool GotHit => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Got Hit");
+
+    protected bool IsAttacking => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+    protected bool CanMove => !IsIdling && !GotHit && !IsAttacking;
 
     /// <summary>
     /// Get the first animator component found in children.
@@ -44,6 +56,7 @@ public abstract class Enemy : MonoBehaviour
             m_hasAnimator = true;
             _idleParameterName = Animator.StringToHash("Idle");
             _hitParameterName = Animator.StringToHash("Hit");
+            _inCombatParameterName = Animator.StringToHash("InCombat");
         }
 
         hasWayPoints = waypoints != null;
@@ -60,6 +73,8 @@ public abstract class Enemy : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
+        CombatMode();
+
         if (!CanMove)
             return;
 
@@ -109,6 +124,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected void TriggerGotHit()
     {
+        if (!m_hasAnimator) return;
         m_animator.SetTrigger(_hitParameterName);
     }
 
@@ -121,6 +137,46 @@ public abstract class Enemy : MonoBehaviour
 
         m_directionChanged = false;
         transform.right = new Vector3(-m_currentDirection, 0, 0);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    protected void CombatMode()
+    {
+        m_combatRayStart = transform.position - (transform.right * m_combatDistance);
+        m_combatRayDirection = transform.right;
+        m_combatRayDistance = m_combatDistance * 2;
+        RaycastHit2D hit =
+            Physics2D.Raycast(m_combatRayStart, m_combatRayDirection, m_combatRayDistance, m_combatLayerMask.value);
+
+        // If it hits something...
+        if (hit.collider != null)
+        {
+            m_inCombat = true;
+            m_combatDirection = (hit.transform.position - transform.position);
+            if (m_combatDirection.x < 0)
+                transform.right = new Vector3(-1, 0, 0);
+            else if (m_combatDirection.x > 0)
+                transform.right = new Vector3(1, 0, 0);
+
+            if (m_hasAnimator && CanMove)
+                m_animator.SetTrigger(_idleParameterName);
+            Debug.DrawRay(m_combatRayStart, m_combatRayDirection * m_combatRayDistance, Color.red);
+        }
+        else
+        {
+            if (m_inCombat)
+            {
+                m_directionChanged = true;
+                m_inCombat = false;
+            }
+
+            Debug.DrawRay(m_combatRayStart, m_combatRayDirection * m_combatRayDistance, Color.green);
+        }
+
+        if (m_animator)
+            m_animator.SetBool(_inCombatParameterName, m_inCombat);
     }
 
     /// <summary>
