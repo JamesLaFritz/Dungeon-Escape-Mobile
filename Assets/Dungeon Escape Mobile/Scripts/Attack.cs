@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// sure the Attack Animation enables & disables this Behavior when Attacking.
+/// Make sure the Attack Animation enables & disables this Behavior when Attacking.
 /// </summary>
 public class Attack : MonoBehaviour
 {
