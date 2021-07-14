@@ -5,10 +5,21 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private int m_health;
 
+    /// <summary>
+    /// The amount of health this enemy has. If the amount is set below 1 the enemy will die.
+    /// </summary>
     public int Health
     {
         get => m_health;
-        set => m_health = value;
+        set
+        {
+            m_health = value;
+
+            if (m_health < 1)
+            {
+                Die();
+            }
+        }
     }
 
     [SerializeField] protected float speed;
@@ -179,6 +190,14 @@ public abstract class Enemy : MonoBehaviour
 
         if (m_animator)
             m_animator.SetBool(_inCombatParameterName, m_inCombat);
+    }
+
+    /// <summary>
+    /// Destroy the Game Object.
+    /// </summary>
+    protected void Die()
+    {
+        Destroy(gameObject);
     }
 
     /// <summary>

@@ -7,13 +7,7 @@ public class MossGiant : Enemy, IDamageable
     {
         TriggerGotHit();
 
-        // Subtract amount from health
         Health -= amount;
-
-        if (Health < 1)
-        {
-            Destroy(gameObject);
-        }
     }
 
     #endregion
