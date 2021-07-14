@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private float m_combatDistance = 2f;
     [SerializeField] private Vector3 m_combatCheckOffset = Vector3.zero;
 
-    private bool m_inCombat;
+    protected bool inCombat;
     private Vector3 m_combatRayStart;
     private Vector3 m_combatRayDirection;
     private float m_combatRayDistance;
@@ -141,6 +141,12 @@ public abstract class Enemy : MonoBehaviour
         m_animator.SetTrigger(_hitParameterName);
     }
 
+    protected void SetAnimatorInCombat()
+    {
+        if (m_animator)
+            m_animator.SetBool(_inCombatParameterName, inCombat);
+    }
+
     /// <summary>
     /// If the Enemy changes direction change the direction that it is facing
     /// </summary>
@@ -166,7 +172,7 @@ public abstract class Enemy : MonoBehaviour
         // If it hits something...
         if (hit.collider != null)
         {
-            m_inCombat = true;
+            inCombat = true;
             m_combatDirection = (hit.transform.position - transform.position);
             if (m_combatDirection.x < 0)
                 transform.right = new Vector3(-1, 0, 0);
@@ -179,17 +185,16 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            if (m_inCombat)
+            if (inCombat)
             {
                 m_directionChanged = true;
-                m_inCombat = false;
+                inCombat = false;
             }
 
             Debug.DrawRay(m_combatRayStart, m_combatRayDirection * m_combatRayDistance, Color.green);
         }
 
-        if (m_animator)
-            m_animator.SetBool(_inCombatParameterName, m_inCombat);
+        SetAnimatorInCombat();
     }
 
     /// <summary>
