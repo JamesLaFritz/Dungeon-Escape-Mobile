@@ -27,6 +27,8 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] private LayerMask m_combatLayerMask = 1 << 10;
     [SerializeField] private float m_combatDistance = 2f;
+    [SerializeField] private Vector3 m_combatCheckOffset = Vector3.zero;
+
     private bool m_inCombat;
     private Vector3 m_combatRayStart;
     private Vector3 m_combatRayDirection;
@@ -144,7 +146,7 @@ public abstract class Enemy : MonoBehaviour
     /// </summary>
     protected void CombatMode()
     {
-        m_combatRayStart = transform.position - (transform.right * m_combatDistance);
+        m_combatRayStart = transform.position + m_combatCheckOffset - (transform.right * m_combatDistance);
         m_combatRayDirection = transform.right;
         m_combatRayDistance = m_combatDistance * 2;
         RaycastHit2D hit =
