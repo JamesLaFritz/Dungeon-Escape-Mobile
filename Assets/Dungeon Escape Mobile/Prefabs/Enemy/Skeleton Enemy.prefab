@@ -262,3 +262,8 @@ MonoBehaviour:
   speed: 0.5
   gems: 5
   waypoints: {fileID: 4366639111857651232}
+  m_combatLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_combatDistance: 0.85
+  m_combatCheckOffset: {x: 0, y: 0, z: 0}
