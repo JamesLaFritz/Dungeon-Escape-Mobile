@@ -21,6 +21,6 @@ public class FireProjectile : MonoBehaviour
     {
         if (!m_hasProjectile) return;
 
-        Instantiate(m_projectile, m_firePosition, m_fireRotation);
+        GameObject go = Instantiate(m_projectile, m_firePosition, m_fireRotation);
     }
 }

@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public class Spider : Enemy, IDamageable
 {
+    [SerializeField] private float m_faceDirection = -1;
+    
     #region Implementation of IDamageable
 
     /// <inheritdoc />
@@ -9,6 +13,11 @@ public class Spider : Enemy, IDamageable
     }
 
     #endregion
+
+    private void Awake()
+    {
+        transform.right = new Vector3(m_faceDirection, 0, 0);
+    }
 
     #region Overrides of Enemy
 

@@ -18,7 +18,7 @@ public class AcidEffect : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(transform.right * m_speed * Time.deltaTime);
+        transform.Translate(transform.TransformDirection(transform.right) * m_speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
