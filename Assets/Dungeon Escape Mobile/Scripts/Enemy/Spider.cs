@@ -3,7 +3,10 @@ public class Spider : Enemy, IDamageable
     #region Implementation of IDamageable
 
     /// <inheritdoc />
-    public void Damage(int amount) { }
+    public void Damage(int amount)
+    {
+        Health = Health - amount;
+    }
 
     #endregion
 

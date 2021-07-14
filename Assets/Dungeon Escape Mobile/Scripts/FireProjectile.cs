@@ -7,17 +7,20 @@ public class FireProjectile : MonoBehaviour
 
     [SerializeField] private Transform m_firePoint;
     private Vector3 m_firePosition;
+    private Quaternion m_fireRotation;
 
     private void Start()
     {
         m_hasProjectile = m_projectile != null;
-        m_firePosition = m_firePoint != null ? m_firePoint.position : transform.position;
+        bool hasFirePoint = m_firePoint != null;
+        m_firePosition = hasFirePoint ? m_firePoint.position : transform.position;
+        m_fireRotation = hasFirePoint ? m_firePoint.rotation : transform.rotation;
     }
 
     public void Fire()
     {
         if (!m_hasProjectile) return;
 
-        Instantiate(m_projectile, m_firePosition, Quaternion.identity);
+        Instantiate(m_projectile, m_firePosition, m_fireRotation);
     }
 }
