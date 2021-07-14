@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 4
+  m_destroyTime: 1
   speed: 1
   gems: 2
   waypoints: {fileID: 9202079216426775483}

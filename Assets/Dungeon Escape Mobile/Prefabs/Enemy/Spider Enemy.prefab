@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5644c9694d4e3046adc34644f753988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 2
+  m_health: 1
+  m_destroyTime: 1.5
   speed: 2
   gems: 1
   waypoints: {fileID: 0}
@@ -142,6 +143,7 @@ MonoBehaviour:
     m_Bits: 1024
   m_combatDistance: 2
   m_combatCheckOffset: {x: 0, y: 0, z: 0}
+  m_faceDirection: 1
 --- !u!1 &5243888907073667138
 GameObject:
   m_ObjectHideFlags: 0
