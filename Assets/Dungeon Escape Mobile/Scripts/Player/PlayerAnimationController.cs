@@ -70,6 +70,21 @@ public class PlayerAnimationController : MonoBehaviour
 
     #endregion
 
+    #region Die
+
+    private int m_dieParameter;
+    private bool m_hasDieParameter;
+
+    public void IsDead(bool value)
+    {
+        if (!m_hasDieParameter) return;
+
+        Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
+        m_animator.SetBool(m_dieParameter, value);
+    }
+
+    #endregion
+
     private void Awake()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -105,6 +120,12 @@ public class PlayerAnimationController : MonoBehaviour
         {
             m_hasHitParameter = true;
             m_hitParameter = Animator.StringToHash("GotHit");
+        }
+
+        if (m_animator.GetParameter(GetAnimatorParameterIndex("IsDead")) != null)
+        {
+            m_hasDieParameter = true;
+            m_dieParameter = Animator.StringToHash("IsDead");
         }
     }
 

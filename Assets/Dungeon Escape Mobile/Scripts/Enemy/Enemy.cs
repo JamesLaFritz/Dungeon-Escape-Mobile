@@ -17,8 +17,25 @@ public abstract class Enemy : MonoBehaviour
 
             if (m_health < 1)
             {
-                Die();
+                isDead = true;
             }
+        }
+    }
+
+    [SerializeField] private float m_destroyTime = 5f;
+
+    private bool m_isDead;
+
+    protected bool isDead
+    {
+        get { return m_isDead; }
+        set
+        {
+            m_isDead = value;
+            if (m_hasAnimator)
+                m_animator.SetBool(_isDeadParameterName, value);
+            if (!value) return;
+            Destroy(gameObject, m_destroyTime);
         }
     }
 
@@ -51,12 +68,12 @@ public abstract class Enemy : MonoBehaviour
     private static int _idleParameterName;
     private static int _hitParameterName;
     private static int _inCombatParameterName;
+    private static int _isDeadParameterName;
 
     protected bool IsIdling => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     protected bool GotHit => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Got Hit");
-
     protected bool IsAttacking => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-    protected bool CanMove => !IsIdling && !GotHit && !IsAttacking;
+    protected bool CanMove => !IsIdling && !GotHit && !IsAttacking && !isDead;
 
     /// <summary>
     /// Get the first animator component found in children.
@@ -70,6 +87,7 @@ public abstract class Enemy : MonoBehaviour
             _idleParameterName = Animator.StringToHash("Idle");
             _hitParameterName = Animator.StringToHash("Hit");
             _inCombatParameterName = Animator.StringToHash("InCombat");
+            _isDeadParameterName = Animator.StringToHash("IsDead");
         }
 
         hasWayPoints = waypoints != null;
@@ -195,14 +213,6 @@ public abstract class Enemy : MonoBehaviour
         }
 
         SetAnimatorInCombat();
-    }
-
-    /// <summary>
-    /// Destroy the Game Object.
-    /// </summary>
-    protected void Die()
-    {
-        Destroy(gameObject);
     }
 
     /// <summary>

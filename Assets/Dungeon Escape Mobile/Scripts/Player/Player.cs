@@ -1,3 +1,4 @@
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,20 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private int m_health = 3;
+
+    private bool m_isDead;
+
+    public bool IsDead
+    {
+        get => m_isDead;
+        set
+        {
+            m_isDead = value;
+            if (m_hasPlayerAnimationController)
+                m_playerAnimationController.IsDead(value);
+            if (m_isDead) Die();
+        }
+    }
 
     [Header("Movement")]
     [SerializeField]
@@ -48,6 +63,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Update()
     {
+        if (m_isDead) return;
+
         m_velocity = m_rigidbody2D.velocity;
 
         Move();
@@ -119,27 +136,35 @@ public class Player : MonoBehaviour, IDamageable
             m_playerAnimationController.TriggerGotHit();
     }
 
+    private void Die()
+    {
+        
+    }
+
     #region Implementation of IDamageable
 
     /// <inheritdoc />
     public int Health
     {
         get => m_health;
-        set => m_health = value;
+        set
+        {
+            m_health = value;
+            if (m_health < 1 && !m_isDead)
+            {
+                IsDead = true;
+            }
+        }
     }
 
     /// <inheritdoc />
     public void Damage(int amount)
     {
+        if (m_isDead) return;
         TriggerGotHit();
 
         // Subtract amount from health
         Health -= amount;
-
-        if (Health < 1)
-        {
-            Destroy(gameObject);
-        }
     }
 
     #endregion
