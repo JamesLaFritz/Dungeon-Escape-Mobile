@@ -1,3 +1,4 @@
+using System.Runtime.Remoting.Messaging;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
         get => m_health;
         set
         {
+            if (m_isDead) return;
             m_health = value;
 
             if (m_health < 1)
@@ -32,10 +34,13 @@ public abstract class Enemy : MonoBehaviour
         get { return m_isDead; }
         set
         {
+            bool alreadyDead = m_isDead;
+
             m_isDead = value;
             if (m_hasAnimator)
                 m_animator.SetBool(_isDeadParameterName, value);
-            if (!value) return;
+
+            if (!value || alreadyDead) return;
 
             if (m_diamondPrefab != null)
             {
@@ -44,6 +49,7 @@ public abstract class Enemy : MonoBehaviour
                     Instantiate(m_diamondPrefab, transform.position + new Vector3(0, i), Quaternion.identity);
                 }
             }
+
             Destroy(gameObject, m_destroyTime);
         }
     }
