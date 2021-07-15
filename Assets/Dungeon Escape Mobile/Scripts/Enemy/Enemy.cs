@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -35,12 +36,21 @@ public abstract class Enemy : MonoBehaviour
             if (m_hasAnimator)
                 m_animator.SetBool(_isDeadParameterName, value);
             if (!value) return;
+
+            if (m_diamondPrefab != null)
+            {
+                for (int i = gems; i > 0; i--)
+                {
+                    Instantiate(m_diamondPrefab, transform.position + new Vector3(0, i), Quaternion.identity);
+                }
+            }
             Destroy(gameObject, m_destroyTime);
         }
     }
 
     [SerializeField] protected float speed;
     [SerializeField] protected int gems;
+    [SerializeField] private GameObject m_diamondPrefab;
 
     [SerializeField] protected CinemachinePathBase waypoints;
     protected bool hasWayPoints;
