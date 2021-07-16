@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_value: 1
-  m_playerDiamonds:
+  m_playerGems:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: b925d5829ca8d2c4ea77ad80737dca5c, type: 2}

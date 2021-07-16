@@ -1,7 +1,5 @@
-using System.Runtime.Remoting.Messaging;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
 
             if (m_health < 1)
             {
-                isDead = true;
+                IsDead = true;
             }
         }
     }
@@ -29,7 +27,11 @@ public abstract class Enemy : MonoBehaviour
 
     private bool m_isDead;
 
-    protected bool isDead
+    /// <summary>
+    /// Is the Enemy Dead. When this value is set set the Enemy to Dead and pass this on to the Animator if there is one.
+    /// If the Enemy is not already Dead then it Spawns the number of Gems it has.
+    /// </summary>
+    protected bool IsDead
     {
         get { return m_isDead; }
         set
@@ -54,10 +56,10 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    [SerializeField] protected float speed;
     [SerializeField] protected int gems;
     [SerializeField] private GameObject m_diamondPrefab;
 
+    [SerializeField] protected float speed;
     [SerializeField] protected CinemachinePathBase waypoints;
     protected bool hasWayPoints;
 
@@ -89,7 +91,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool IsIdling => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     protected bool GotHit => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Got Hit");
     protected bool IsAttacking => m_hasAnimator && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-    protected bool CanMove => !IsIdling && !GotHit && !IsAttacking && !isDead;
+    protected bool CanMove => !IsIdling && !GotHit && !IsAttacking && !IsDead;
 
     /// <summary>
     /// Get the first animator component found in children.

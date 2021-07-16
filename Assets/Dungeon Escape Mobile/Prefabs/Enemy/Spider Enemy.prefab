@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 1
   m_destroyTime: 1.5
-  speed: 2
   gems: 1
   m_diamondPrefab: {fileID: 4249431573778207256, guid: 5b51efb9b7d4ad449beb9402948e3431, type: 3}
+  speed: 2
   waypoints: {fileID: 0}
   m_combatLayerMask:
     serializedVersion: 2

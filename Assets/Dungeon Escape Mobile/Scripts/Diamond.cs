@@ -7,14 +7,14 @@ using UnityEngine;
 public class Diamond : MonoBehaviour
 {
     [SerializeField] private int m_value;
-    [SerializeField] private IntReference m_playerDiamonds;
+    [SerializeField] private IntReference m_playerGems;
     [SerializeField, Tag] private string m_collectorTag;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag(m_collectorTag)) return;
 
-        m_playerDiamonds.Value += m_value;
+        m_playerGems.Value += m_value;
 
         Destroy(gameObject);
     }
