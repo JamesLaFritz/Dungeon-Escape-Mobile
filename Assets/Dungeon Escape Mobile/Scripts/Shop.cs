@@ -14,8 +14,9 @@ public class Shop : MonoBehaviour
     {
         if (!other.CompareTag(m_PlayerTag)) return;
 
-        m_playerInShop.Value = true;
         m_currentShop.SetValue(this);
+        //Debug.Log(m_currentShop.Value);
+        m_playerInShop.Value = true;
     }
 
     /// <summary>

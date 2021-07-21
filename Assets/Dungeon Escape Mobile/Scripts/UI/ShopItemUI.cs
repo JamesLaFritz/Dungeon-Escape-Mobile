@@ -16,13 +16,10 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private ShopItem m_currentItem;
     private ShopItem m_shopItem;
 
-
     /// <summary>
-    /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    ///
-    /// This function can be a coroutine.
+    /// Awake is called when the script instance is being loaded.
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         m_hasItemButton = m_itemButton != null;
         m_hasItemText = m_itemText != null;
@@ -32,43 +29,48 @@ public class ShopItemUI : MonoBehaviour
 
     public void SelectItem()
     {
-        Debug.Log($"Selected {name}");
+        //Debug.Log($"Selected {name}");
+
+        m_currentItem.cost = m_shopItem.cost;
+        m_currentItem.gameItem = m_shopItem.gameItem;
+        //m_currentItem = m_shopItem;
 
         if (!m_hasSelectionImage) return;
         System.Diagnostics.Debug.Assert(m_selectionImage != null, nameof(m_selectionImage) + " != null");
         m_selectionImage.gameObject.SetActive(true);
-
-        m_currentItem = m_shopItem;
     }
 
     public void DeselectItem()
     {
         if (!m_hasSelectionImage) return;
 
+        if (m_currentItem.cost == m_shopItem.cost && m_currentItem.gameItem == m_shopItem.gameItem) return;
+
         System.Diagnostics.Debug.Assert(m_selectionImage != null, nameof(m_selectionImage) + " != null");
         m_selectionImage.gameObject.SetActive(false);
     }
 
-    private void SetCost(int cost)
+    private void SetCost()
     {
         if (!m_hasCostText) return;
 
         System.Diagnostics.Debug.Assert(m_costText != null, nameof(m_costText) + " != null");
-        m_costText.text = $"{cost}G";
+        m_costText.text = $"{m_shopItem.cost}G";
     }
 
-    private void SetItemText(string itemText)
+    private void SetItemText()
     {
         if (!m_hasItemText) return;
 
         System.Diagnostics.Debug.Assert(m_itemText != null, nameof(m_itemText) + " != null");
-        m_itemText.text = itemText;
+        m_itemText.text = m_shopItem.gameItem.name;
     }
 
     public void SetItem([NotNull] ShopItem item)
     {
         m_shopItem = item;
-        SetCost(item.cost);
-        SetItemText(item.gameItem.name);
+        name = m_shopItem.name;
+        SetCost();
+        SetItemText();
     }
 }
