@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IntReference m_playerGems;
     [SerializeField] private int m_startingGems = 3;
 
+    [SerializeField] private Inventory m_playerInventory;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -38,5 +40,7 @@ public class GameManager : MonoBehaviour
     {
         // ReSharper disable once PossibleNullReferenceException
         m_playerGems.Value = m_startingGems;
+        // ReSharper disable once Unity.NoNullPropagation
+        m_playerInventory?.EmptyInventory();
     }
 }
