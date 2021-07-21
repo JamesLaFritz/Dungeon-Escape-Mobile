@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = System.Diagnostics.Debug;
@@ -10,12 +8,13 @@ public class Message : MonoBehaviour
     private Text m_text;
     private bool m_hasText;
     private Animator m_animator;
-    private static readonly int Display1 = Animator.StringToHash("Display");
+    private static readonly int DisplayParameter = Animator.StringToHash("Display");
 
     private void Start()
     {
         m_text = GetComponentInChildren<Text>();
         m_hasText = m_text != null;
+        m_animator = GetComponent<Animator>();
     }
 
     public void Display(string message)
@@ -27,6 +26,6 @@ public class Message : MonoBehaviour
         }
 
         Debug.Assert(m_animator != null, nameof(m_animator) + " != null");
-        m_animator.SetTrigger(Display1);
+        m_animator.SetTrigger(DisplayParameter);
     }
 }
