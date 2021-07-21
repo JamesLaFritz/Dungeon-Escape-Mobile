@@ -42,7 +42,7 @@ public class ShopUI : MonoBehaviour
         m_hasGemsText = m_shopGemsText != null;
         m_hasShopItemUIPrefab = m_shopItemUIPrefab != null;
         m_hasCurrentShop = m_currentShop != null;
-        m_hasCurrentShop = m_playerInventory != null;
+        m_hasInventory = m_playerInventory != null;
 
         RemoveItems();
     }
@@ -86,17 +86,31 @@ public class ShopUI : MonoBehaviour
 
         ShopItem[] shopItems = m_currentShop.Value.shopItems;
         m_shopItemUis = new List<ShopItemUI>();
+        int firstSelectedIndex = 0;
 
         for (int i = 0; i < shopItems.Length && i < 3; i++)
         {
-            if (shopItems[i] == null) continue;
+            if (shopItems[i] == null)
+            {
+                if (i == firstSelectedIndex) firstSelectedIndex++;
+                continue;
+            }
+
+            if (m_hasInventory)
+            {
+                if (m_playerInventory.ContainsItem(shopItems[i].gameItem))
+                {
+                    if (firstSelectedIndex == i) firstSelectedIndex++;
+                    continue;
+                }
+            }
 
             ShopItemUI ui = Instantiate(m_shopItemUIPrefab, m_itemPanel)?.GetComponent<ShopItemUI>();
             if (ui == null) continue;
 
             ui.SetItem(shopItems[i]);
             m_shopItemUis.Add(ui);
-            if (i == 0)
+            if (i == firstSelectedIndex)
                 ui.SelectItem();
         }
     }
@@ -126,11 +140,24 @@ public class ShopUI : MonoBehaviour
             if (!m_hasInventory) return;
             System.Diagnostics.Debug.Assert(m_playerInventory != null, nameof(m_playerInventory) + " != null");
             m_playerInventory.Add(m_currentItem.gameItem);
+
+            RemoveItemFromShop();
         }
         else
         {
             System.Diagnostics.Debug.Assert(UIManager.Instance != null, "UIManager.Instance != null");
             UIManager.Instance.DisplayMessage("Not Enough Gems.");
+        }
+    }
+
+    private void RemoveItemFromShop()
+    {
+        foreach (ShopItemUI shopItemUi in m_shopItemUis!.Where(shopItemUi => shopItemUi is {IsItemCurrentSelected: true}))
+        {
+            shopItemUi.DisableItem();
+            m_shopItemUis.Remove(shopItemUi);
+            Destroy(shopItemUi.gameObject);
+            return;
         }
     }
 }

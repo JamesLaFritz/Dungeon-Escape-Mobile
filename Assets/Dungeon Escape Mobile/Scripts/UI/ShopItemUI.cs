@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class ShopItemUI : MonoBehaviour
     [SerializeField] private ShopItem m_currentItem;
     private ShopItem m_shopItem;
 
+    public bool IsItemCurrentSelected => m_shopItem is { } && m_currentItem is { } && m_currentItem.cost == m_shopItem.cost && m_currentItem.gameItem == m_shopItem.gameItem;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -29,11 +32,8 @@ public class ShopItemUI : MonoBehaviour
 
     public void SelectItem()
     {
-        //Debug.Log($"Selected {name}");
-
         m_currentItem.cost = m_shopItem.cost;
         m_currentItem.gameItem = m_shopItem.gameItem;
-        //m_currentItem = m_shopItem;
 
         if (!m_hasSelectionImage) return;
         System.Diagnostics.Debug.Assert(m_selectionImage != null, nameof(m_selectionImage) + " != null");
@@ -44,7 +44,7 @@ public class ShopItemUI : MonoBehaviour
     {
         if (!m_hasSelectionImage) return;
 
-        if (m_currentItem.cost == m_shopItem.cost && m_currentItem.gameItem == m_shopItem.gameItem) return;
+        if (IsItemCurrentSelected) return;
 
         System.Diagnostics.Debug.Assert(m_selectionImage != null, nameof(m_selectionImage) + " != null");
         m_selectionImage.gameObject.SetActive(false);
@@ -72,5 +72,17 @@ public class ShopItemUI : MonoBehaviour
         name = m_shopItem.name;
         SetCost();
         SetItemText();
+    }
+
+    public void DisableItem()
+    {
+        if (!IsItemCurrentSelected) return;
+        if (!m_hasItemButton) return;
+
+        m_itemButton.interactable = false;
+
+        DeselectItem();
+        m_currentItem.gameItem = null;
+        m_currentItem.cost = Int32.MaxValue;
     }
 }

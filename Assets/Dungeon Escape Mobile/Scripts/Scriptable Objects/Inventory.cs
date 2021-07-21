@@ -16,6 +16,11 @@ public class Inventory : ScriptableObject
         m_items.Remove(item);
     }
 
+    public bool ContainsItem(Item item)
+    {
+        return m_items.Contains(item);
+    }
+    
     public void EmptyInventory()
     {
         m_items = new List<Item>();
