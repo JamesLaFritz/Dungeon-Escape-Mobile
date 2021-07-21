@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a401a6c78f9a54d96cf2740da53254, type: 3}
   m_Name: Shop Item Boots Of Flight
   m_EditorClassIdentifier: 
-  gameItem: {fileID: 11400000, guid: f05567eccdbb9c44ca9ec262f8d3d528, type: 2}
+  gameItem: {fileID: 11400000, guid: f9c04960e21237b438cb9084e63afb12, type: 2}
   cost: 400
