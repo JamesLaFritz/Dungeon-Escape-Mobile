@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Inventory m_playerInventory;
 
+    [SerializeField] private StatReference m_playerHealth;
+    [SerializeField] private int m_playerStartingMaxHealth = 3;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         // ReSharper disable once PossibleNullReferenceException
         m_playerGems.Value = m_startingGems;
+        m_playerHealth.Max = m_playerStartingMaxHealth;
+        m_playerHealth.ResetStat();
         // ReSharper disable once Unity.NoNullPropagation
         m_playerInventory?.EmptyInventory();
     }
