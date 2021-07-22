@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody2D))]
 public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int m_health = 3;
+    [SerializeField] private StatReference m_healthStat;
 
     private bool m_isDead;
 
@@ -146,11 +146,11 @@ public class Player : MonoBehaviour, IDamageable
     /// <inheritdoc />
     public int Health
     {
-        get => m_health;
+        get => (int)m_healthStat.Value;
         set
         {
-            m_health = value;
-            if (m_health < 1 && !m_isDead)
+            m_healthStat.Add(value - m_healthStat.Value);
+            if (m_healthStat.Value < 1 && !m_isDead)
             {
                 IsDead = true;
             }
