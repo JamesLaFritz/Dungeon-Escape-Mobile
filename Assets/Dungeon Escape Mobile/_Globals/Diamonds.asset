@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d117f6f2a714354b6db64f8894361cc, type: 3}
   m_Name: Diamonds
   m_EditorClassIdentifier: 
-  variableValue: 0
+  variableValue: 400
