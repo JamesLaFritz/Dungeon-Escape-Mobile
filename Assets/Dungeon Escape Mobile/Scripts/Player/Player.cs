@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private StatReference m_healthStat;
+    [SerializeField] private int m_startingMaxHealth = 3;
 
     private bool m_isDead;
 
@@ -59,6 +60,10 @@ public class Player : MonoBehaviour, IDamageable
         m_rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         m_playerAnimationController = GetComponent<PlayerAnimationController>();
         m_hasPlayerAnimationController = m_playerAnimationController != null;
+
+
+        m_healthStat.Max = m_startingMaxHealth;
+        m_healthStat.ResetStat();
     }
 
     public void Update()
