@@ -65,6 +65,8 @@ public class ShopUI : MonoBehaviour
             System.Diagnostics.Debug.Assert(shopItemUi != null, nameof(shopItemUi) + " != null");
             shopItemUi.DeselectItem();
         }
+
+        UpdateShopGemsText();
     }
 
     private void RemoveItems()
